@@ -25,18 +25,14 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import Link from "next/link";
-
-const formSchema = z.object({
-	name: z.string().trim().min(2, "Name is required"),
-	email: z.string().email(),
-	password: z
-		.string()
-		.min(8, "Password must be 8 characters minimum"),
-});
+import { registerSchema } from "../schemas";
+import { useRegister } from "../api/use-register";
 
 export const SignUpCard = () => {
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
+	const { mutate, isPending } = useRegister();
+
+	const form = useForm<z.infer<typeof registerSchema>>({
+		resolver: zodResolver(registerSchema),
 		defaultValues: {
 			name: "",
 			email: "",
@@ -44,8 +40,8 @@ export const SignUpCard = () => {
 		},
 	});
 
-	const onSubmit = (values: z.infer<typeof formSchema>) => {
-		console.log("Form submitted:", values);
+	const onSubmit = (values: z.infer<typeof registerSchema>) => {
+		mutate({ json: values });
 		// Your logic for submitting the form goes here
 	};
 	return (
@@ -121,10 +117,10 @@ export const SignUpCard = () => {
 						/>
 
 						<Button
-							disabled={false}
+							disabled={isPending}
 							size="lg"
 							className="w-full">
-							Login
+							Register
 						</Button>
 					</form>
 				</Form>
@@ -134,7 +130,7 @@ export const SignUpCard = () => {
 			</div>
 			<CardContent className="p-7 flex flex-col gap-y-4">
 				<Button
-					disabled={false}
+					disabled={isPending}
 					variant="secondary"
 					size="lg"
 					className="w-full">
@@ -142,7 +138,7 @@ export const SignUpCard = () => {
 					Login with Google
 				</Button>
 				<Button
-					disabled={false}
+					disabled={isPending}
 					variant="secondary"
 					size="lg"
 					className="w-full">
