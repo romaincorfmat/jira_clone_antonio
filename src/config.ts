@@ -1,0 +1,5 @@
+export const DATABASE_ID =
+	process.env.NEXT_PUBLIC_APPWITE_DATABASE_ID!;
+
+export const WORKSPACES_ID =
+	process.env.NEXT_PUBLIC_APPWITE_WORKSPACES_ID!;
