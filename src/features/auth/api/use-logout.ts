@@ -5,7 +5,7 @@ import {
 import { InferResponseType } from "hono";
 
 //! Uncomment if needed in the future
-// import { InferRequestType } from "hono";
+import { InferRequestType } from "hono";
 
 import { client } from "@/lib/rpc";
 import { useRouter } from "next/navigation";
@@ -16,9 +16,9 @@ type ResponseType = InferResponseType<
 >;
 
 //! Uncomment if needed in the future
-// type RequestType = InferRequestType<
-// 	(typeof client.api.auth.logout)["$post"]
-// >;
+type RequestType = InferRequestType<
+	(typeof client.api.auth.logout)["$post"]
+>;
 
 export const useLogout = () => {
 	const router = useRouter();
@@ -34,8 +34,10 @@ export const useLogout = () => {
 			return await response.json();
 		},
 		onSuccess: () => {
-			toast.success("Logged out successfully");
+			//**Added to help being redirected to sign-in */
+			// router.push("/sign-in");
 			router.refresh();
+			toast.success("Logged out successfully");
 			queryClient.invalidateQueries({ queryKey: ["current"] });
 			queryClient.invalidateQueries({ queryKey: ["workspaces"] });
 		},
