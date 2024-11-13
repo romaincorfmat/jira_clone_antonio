@@ -4,8 +4,8 @@ import React from "react";
 import { getCurrent } from "@/features/auth/queries";
 import { MembersList } from "@/features/workspaces/components/members-list";
 
-const WorkspaceIdMembersPage = () => {
-  const user = getCurrent();
+const WorkspaceIdMembersPage = async () => {
+  const user = await getCurrent();
 
   if (!user) redirect("/sign-in");
 

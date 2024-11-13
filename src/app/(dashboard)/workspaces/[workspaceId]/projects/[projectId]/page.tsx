@@ -12,7 +12,7 @@ interface ProjectIdPageProps {
   params: { projectId: string };
 }
 const ProjectIdPage = async ({ params }: ProjectIdPageProps) => {
-  const user = getCurrent();
+  const user = await getCurrent();
   if (!user) redirect("/sign-in");
 
   const initialValues = await getProject({
