@@ -12,3 +12,6 @@ export const MEMBERS_ID =
 
 export const PROJECTS_ID =
   process.env.NEXT_PUBLIC_APPWITE_PROJECTS_ID!;
+
+export const TASKS_ID =
+  process.env.NEXT_PUBLIC_APPWITE_TASKS_ID!;
