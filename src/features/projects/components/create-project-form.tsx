@@ -106,7 +106,7 @@ export const CreateProjectForm = ({
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder="Enter workspace name"
+                        placeholder="Enter project name"
                       />
                     </FormControl>
                     <FormMessage />

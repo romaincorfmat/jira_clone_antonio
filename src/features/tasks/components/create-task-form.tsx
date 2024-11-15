@@ -1,6 +1,5 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -57,7 +56,6 @@ export const CreateTaskForm = ({
   projectOptions,
   memberOptions,
 }: CreateTaskFormProps) => {
-  const router = useRouter();
   const workspaceId = useWorkspaceId();
   const { mutate, isPending } = useCreateTask();
 
@@ -80,7 +78,7 @@ export const CreateTaskForm = ({
       {
         onSuccess: () => {
           form.reset();
-          // TODO: Redirect to new task
+          onCancel?.();
         },
       }
     );
