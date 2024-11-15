@@ -3,7 +3,6 @@ import {
   ListCheckIcon,
   UserIcon,
 } from "lucide-react";
-import { date } from "zod";
 
 import { DatePicker } from "@/components/date-picker";
 import {
