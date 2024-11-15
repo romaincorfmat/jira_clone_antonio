@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/navbar";
 import { Sidebar } from "@/components/sidebar";
 import { CreateProjectModal } from "@/features/projects/components/create-project-modal";
+import { CreateTaskModal } from "@/features/tasks/components/create-task-modal";
 import { CreateWorkspaceModal } from "@/features/workspaces/components/create-workspaceModal";
 
 interface DahboardLayoutProps {
@@ -11,6 +12,7 @@ const DahboardLayout = ({ children }: DahboardLayoutProps) => {
     <div className="min-h-screen">
       <CreateWorkspaceModal />
       <CreateProjectModal />
+      <CreateTaskModal />
       <div className="flex size-full">
         <div className="fixed left-0 top-0 hidden h-full overflow-y-auto lg:block lg:w-[264px]">
           <Sidebar />
