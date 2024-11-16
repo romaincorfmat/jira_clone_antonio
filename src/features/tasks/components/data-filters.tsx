@@ -14,7 +14,9 @@ import {
   SelectSeparator,
 } from "@/components/ui/select";
 import { useGetMembers } from "@/features/members/api/use-get-members";
+import { MemberAvatar } from "@/features/members/components/member-avatar";
 import { useGetProjects } from "@/features/projects/api/use-get-projects";
+import { ProjectAvatar } from "@/features/projects/components/project-avatar";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 
 import { useTaskFilters } from "../hooks/use-task-filters";
@@ -40,6 +42,7 @@ export const DataFilters = ({
   const projectOptions = projects?.documents.map((project) => ({
     value: project.$id,
     label: project.name,
+    image: project.imageUrl,
   }));
 
   const memberOptions = members?.documents.map((member) => ({
@@ -116,7 +119,10 @@ export const DataFilters = ({
             <SelectItem
               key={member.value}
               value={member.value}>
-              {member.label}
+              <div className="flex gap-x-3">
+                <MemberAvatar name={member.label} />
+                {member.label}
+              </div>
             </SelectItem>
           ))}
         </SelectContent>
@@ -138,7 +144,13 @@ export const DataFilters = ({
             <SelectItem
               key={project.value}
               value={project.value}>
-              {project.label}
+              <div className="flex gap-x-3">
+                <ProjectAvatar
+                  image={project.image}
+                  name={project.label}
+                />
+                {project.label}
+              </div>
             </SelectItem>
           ))}
         </SelectContent>
