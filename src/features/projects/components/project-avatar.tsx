@@ -41,7 +41,7 @@ export const ProjectAvatar = ({
           "rounded-md bg-blue-600 text-sm font-semibold uppercase text-white",
           fallbackClassName
         )}>
-        {name[0]}
+        {name && name[0]}
       </AvatarFallback>
     </Avatar>
   );

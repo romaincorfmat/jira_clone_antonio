@@ -1,7 +1,7 @@
 "use client";
 import { Loader, PlusIcon } from "lucide-react";
 import { useQueryState } from "nuqs";
-import React from "react";
+import React, { useCallback } from "react";
 
 import { DottedSeparator } from "@/components/dotted-separator";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,8 @@ import { DataTable } from "./data-table";
 import { useGetTasks } from "../api/use-get-tasks";
 import { useCreateTaskModal } from "../hooks/use-create-task-modal";
 import { useTaskFilters } from "../hooks/use-task-filters";
+import { TaskStatus } from "../types";
+import { useBulkUpdateTask } from "../api/use-bulk-update-task";
 
 export const TaskViewSwitcher = () => {
   // This useQueryState is used to update the url when switching the taks view
@@ -30,11 +32,28 @@ export const TaskViewSwitcher = () => {
 
   const { open } = useCreateTaskModal();
 
+  const { mutate: bulkUpdate } = useBulkUpdateTask();
+
   const [{ status, assigneeId, projectId, dueDate }] =
     useTaskFilters();
   // Bases on  the useTaskFilter hook, i can then call useGet Task to filter the douments the user wants to load based on which filters he choose.
   const { data: tasks, isLoading: isLoadingTasks } = useGetTasks(
     { workspaceId, projectId, assigneeId, status, dueDate }
+  );
+
+  const onKanbanChange = useCallback(
+    (
+      tasks: {
+        $id: string;
+        status: TaskStatus;
+        position: number;
+      }[]
+    ) => {
+      bulkUpdate({
+        json: { tasks },
+      });
+    },
+    [bulkUpdate]
   );
 
   return (
@@ -88,7 +107,10 @@ export const TaskViewSwitcher = () => {
             <TabsContent
               value="kanban"
               className="mt-0">
-              <DataKanban data={tasks?.documents ?? []} />
+              <DataKanban
+                data={tasks?.documents ?? []}
+                onChange={onKanbanChange}
+              />
             </TabsContent>
             <TabsContent
               value="calendar"
