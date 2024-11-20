@@ -17,11 +17,12 @@ import { columns } from "./colums";
 import { DataFilters } from "./data-filters";
 import { DataKanban } from "./data-kanban";
 import { DataTable } from "./data-table";
+import { useBulkUpdateTask } from "../api/use-bulk-update-task";
 import { useGetTasks } from "../api/use-get-tasks";
 import { useCreateTaskModal } from "../hooks/use-create-task-modal";
 import { useTaskFilters } from "../hooks/use-task-filters";
 import { TaskStatus } from "../types";
-import { useBulkUpdateTask } from "../api/use-bulk-update-task";
+import { DataCalendar } from "./data-calendar";
 
 export const TaskViewSwitcher = () => {
   // This useQueryState is used to update the url when switching the taks view
@@ -114,8 +115,8 @@ export const TaskViewSwitcher = () => {
             </TabsContent>
             <TabsContent
               value="calendar"
-              className="mt-0">
-              {JSON.stringify(tasks)}
+              className="mt-0 h-full pb-4">
+              <DataCalendar data={tasks?.documents ?? []} />
             </TabsContent>
           </>
         }
