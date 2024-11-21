@@ -51,7 +51,6 @@ export const useGetTasks = ({
       return data;
     },
   });
-  console.log("Query:", query);
 
   return query;
 };

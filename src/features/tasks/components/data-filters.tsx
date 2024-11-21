@@ -74,7 +74,7 @@ export const DataFilters = ({
   };
 
   if (isLoading) return null;
-
+  // TODO: Implement a reset button for the filters.
   return (
     <div className="flex flex-col gap-2 lg:flex-row">
       <Select

@@ -28,6 +28,7 @@ import { DataCalendar } from "./data-calendar";
 interface TaskViewSwitcherProps {
   hideProjectFilter?: boolean;
   tasksProjectIdProps?: boolean;
+  userId?: string;
 }
 export const TaskViewSwitcher = ({
   hideProjectFilter,
@@ -39,7 +40,6 @@ export const TaskViewSwitcher = ({
   });
   const workspaceId = useWorkspaceId();
   const projectIdParam = useProjectId();
-  console.log("Here:", projectIdParam);
 
   const { open } = useCreateTaskModal();
 

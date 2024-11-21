@@ -6,8 +6,9 @@ import { TaskViewSwitcher } from "@/features/tasks/components/task-view-switcher
 
 const TasksPage = async () => {
   const user = await getCurrent();
-  if (!user) redirect("/sign-in");
 
+  if (!user) redirect("/sign-in");
+  // TODO: Only Render the tasks of the user.
   return (
     <div className="flex h-full flex-col">
       <TaskViewSwitcher />
