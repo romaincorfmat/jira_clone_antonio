@@ -47,9 +47,11 @@ export const useGetTasks = ({
       }
 
       const { data } = await response.json();
-
+      console.log("Data:", data);
       return data;
     },
   });
+  console.log("Query:", query);
+
   return query;
 };
