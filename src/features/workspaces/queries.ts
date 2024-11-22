@@ -7,9 +7,6 @@ import {
 } from "@/config";
 import { createSessionClient } from "@/lib/appwrite";
 
-import { Workspace } from "./types";
-import { getMember } from "../members/utils";
-
 export const getWorkspaces = async () => {
   const { account, databases } = await createSessionClient();
 
@@ -39,51 +36,4 @@ export const getWorkspaces = async () => {
   );
 
   return workspaces;
-};
-
-interface getWorkspaceProps {
-  workspaceId: string;
-}
-
-export const getWorkspace = async ({
-  workspaceId,
-}: getWorkspaceProps) => {
-  const { account, databases } = await createSessionClient();
-  const user = await account.get();
-
-  const member = await getMember({
-    databases,
-    userId: user.$id,
-    workspaceId,
-  });
-
-  if (!member) {
-    throw new Error("Unauthorized");
-  }
-
-  const workspace = await databases.getDocument<Workspace>(
-    DATABASE_ID,
-    WORKSPACES_ID,
-    workspaceId
-  );
-
-  return workspace;
-};
-
-interface getWorkspaceInfoProps {
-  workspaceId: string;
-}
-
-export const getWorkspaceInfo = async ({
-  workspaceId,
-}: getWorkspaceInfoProps) => {
-  const { databases } = await createSessionClient();
-
-  const workspace = await databases.getDocument<Workspace>(
-    DATABASE_ID,
-    WORKSPACES_ID,
-    workspaceId
-  );
-
-  return { name: workspace.name };
 };

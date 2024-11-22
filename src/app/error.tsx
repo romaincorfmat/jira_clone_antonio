@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 const ErrorPage = () => {
   return (
-    <div className="flex h-screen flex-col items-center justify-center gap-y-2">
+    <div className="flex h-[calc(100vh-250px)] flex-col items-center justify-center gap-y-2">
       <AlertTriangle className="size-10 text-muted-foreground" />
       <p className="text-sm text-muted-foreground">
         Something went wrong

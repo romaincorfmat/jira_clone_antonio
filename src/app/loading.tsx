@@ -5,8 +5,8 @@ import React from "react";
 
 const LoadingPage = () => {
   return (
-    <div className="flex h-screen flex-col items-center justify-center ">
-      <Loader className="size-10 animate-spin text-muted-foreground" />
+    <div className="flex h-[calc(100vh-250px)] flex-col items-center justify-center ">
+      <Loader className="size-6 animate-spin text-muted-foreground" />
     </div>
   );
 };
