@@ -2,6 +2,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 
 import { MemberAvatar } from "@/features/members/components/member-avatar";
+import { Member } from "@/features/members/types";
 import { ProjectAvatar } from "@/features/projects/components/project-avatar";
 import { Project } from "@/features/projects/types";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
@@ -12,7 +13,7 @@ import { TaskStatus } from "../types";
 interface EventCardProps {
   title: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  assignee: any;
+  assignee: Member;
   project: Project;
   status: TaskStatus;
   id: string;

@@ -19,6 +19,7 @@ const boards: TaskStatus[] = [
 ];
 
 type TaskState = {
+  // eslint-disable-next-line no-unused-vars
   [key in TaskStatus]: Task[];
 };
 interface DataKanbanProps {

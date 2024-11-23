@@ -6,7 +6,7 @@
     "plugin:tailwindcss/recommended",
     "prettier"
   ],
-  "plugins": ["import", "tailwindcss"],
+  "plugins": ["import", "tailwindcss", "@typescript-eslint"],
   "rules": {
     "import/order": [
       "error",

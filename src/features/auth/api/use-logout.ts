@@ -3,7 +3,10 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 //! Uncomment if needed in the future
-import { InferRequestType, InferResponseType } from "hono";
+import {
+  // InferRequestType,
+  InferResponseType,
+} from "hono";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
@@ -14,9 +17,9 @@ type ResponseType = InferResponseType<
 >;
 
 //! Uncomment if needed in the future
-type RequestType = InferRequestType<
-  (typeof client.api.auth.logout)["$post"]
->;
+// type RequestType = InferRequestType<
+//   (typeof client.api.auth.logout)["$post"]
+// >;
 
 export const useLogout = () => {
   const router = useRouter();

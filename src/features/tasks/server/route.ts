@@ -400,6 +400,10 @@ const app = new Hono()
         userId: user.$id,
       });
 
+      if (!member) {
+        return c.json({ error: "Unauthorized" }, 400);
+      }
+
       const updatedTasks = await Promise.all(
         tasks.map(async (task) => {
           const { $id, status, position } = task;
