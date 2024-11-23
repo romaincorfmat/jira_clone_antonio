@@ -24,6 +24,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { signUpWithGithub } from "@/lib/oauth";
 
 import { useRegister } from "../api/use-register";
 import { registerSchema } from "../schemas";
@@ -140,6 +141,7 @@ export const SignUpCard = () => {
           Login with Google
         </Button>
         <Button
+          onClick={() => signUpWithGithub()}
           disabled={isPending}
           variant="secondary"
           size="lg"

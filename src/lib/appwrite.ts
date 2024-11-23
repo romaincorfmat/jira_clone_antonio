@@ -1,6 +1,7 @@
 import "server-only";
 
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import {
   Client,
   Account,
@@ -18,7 +19,7 @@ export async function createSessionClient() {
   const session = await cookies().get(AUTH_COOKIE);
 
   if (!session || !session.value) {
-    throw new Error("Unauthorized");
+    redirect("/sign-in");
   }
 
   client.setSession(session.value);
